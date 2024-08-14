@@ -145,8 +145,11 @@ const VehicleMap = () => {
 
         {/* Route History Section */}
         <div className="route-history-circle" onClick={() => setShowHistory(!showHistory)}>
-        <span className="circle-text">Route History</span>
-  <div className={`route-history ${showHistory ? 'show' : 'hide'}`}>
+  <span className="circle-text">Route History</span>
+  <div
+    className={`route-history ${showHistory ? 'show' : 'hide'}`}
+    onClick={(e) => e.stopPropagation()} // Stop propagation when clicking inside the history div
+  >
     <h3>Route History</h3>
     <div className="history-controls">
       <select
@@ -162,7 +165,10 @@ const VehicleMap = () => {
         ))}
       </select>
       <button
-        onClick={() => handlePreviousRideClick(routeHistory[selectedRouteIndex])}
+        onClick={(e) => {
+          e.stopPropagation(); // Stop propagation when clicking the button
+          handlePreviousRideClick(routeHistory[selectedRouteIndex]);
+        }}
         className="history-show-button"
         disabled={selectedRouteIndex === null}
       >
