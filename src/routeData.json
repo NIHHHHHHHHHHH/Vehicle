@@ -1,0 +1,32 @@
+{
+    "distance": "15.4",
+    "duration": "0.5",
+    "steps": [
+      {
+        "instruction": "Head north on Main St",
+        "distance": "1.2",
+        "duration": "2"
+      },
+      {
+        "instruction": "Turn right onto Elm St",
+        "distance": "2.4",
+        "duration": "4"
+      },
+      {
+        "instruction": "Continue onto Oak St",
+        "distance": "3.8",
+        "duration": "8"
+      },
+      {
+        "instruction": "Turn left onto Maple Ave",
+        "distance": "4.0",
+        "duration": "6"
+      },
+      {
+        "instruction": "Arrive at your destination",
+        "distance": "4.0",
+        "duration": "10"
+      }
+    ]
+  }
+  

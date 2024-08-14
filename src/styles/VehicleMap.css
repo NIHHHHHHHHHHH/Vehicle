@@ -1,0 +1,333 @@
+
+  h1{
+    text-align: center;
+    color: #3366cc;
+  }
+  .map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Background */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 2; /* On top of the map */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .route-info-slider,
+  .route-history,
+  .progress-bar-container,
+  .controls {
+    background: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .route-info-slider {
+    max-height: 200px; /* Limit height */
+    overflow-y: auto; /* Enable scrolling */
+    max-width: 600px;
+    display: flex;
+    position: fixed;
+    right: 0;
+    
+  }
+
+ 
+  
+  .route-info-slider h3,
+  .route-history h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .route-info-slider ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .route-info-slider li {
+    margin-bottom: 10px;
+  }
+  
+  .route-history {
+    max-width: 900px;
+  }
+  
+
+
+  .route-history-circle {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.8); 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    top: 160px;
+    
+  }
+  
+  .circle-text {
+    text-align: center;
+    color: #3366cc;
+    font-size: 14px; /* Adjust font size as needed */
+    line-height: 1.2; /* Adjust line height for better vertical spacing */
+  }
+
+
+  .route-history {
+    display: none;
+    position: absolute;
+    top: 100px; /* Position the content below the circle */
+    left: 80%;
+    transform: translateX(-8%);
+    width: 900px; /* Adjust width as needed */
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .route-history.show {
+    display: block;
+  }
+  
+  .route-history.hide {
+    display: none;
+  }
+  
+
+
+
+
+
+  
+  .history-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .history-select {
+    flex-grow: 1;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .history-show-button {
+    padding: 5px 10px;
+    background-color: #3366cc;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .history-show-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .progress-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 700px;
+  }
+  
+  .progress-bar {
+    width: 700px;
+  }
+  
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 600px;
+  }
+  
+  .speed-slider {
+    flex-grow: 1;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Optional: Adds space between the columns */
+    width: 100%; /* Adjusted to full width */
+  position: fixed; /* Fixed positioning */
+  bottom: 0; /* Positioned at the bottom */
+  left: 0; /* Aligned to the left */
+ 
+  padding-bottom: 50px; 
+  padding-left: 20px;
+ 
+  padding-right: 40px;
+  }
+  
+  .progress-bar-container,
+  .controls {
+    flex-basis: 50%;
+  }
+
+
+
+
+
+
+/* google maps */
+
+  .address-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+  
+  .input-group {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 10px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .input-group input:focus {
+    border-color: #007bff;
+  }
+  
+  .input-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #007bff;
+  }
+  
+  .suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .suggestions li i {
+    margin-right: 10px;
+    color: #007bff;
+  }
+  
+  .suggestions li:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .start-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .start-button i {
+    margin-right: 5px;
+  }
+  
+  .arrow-icon {
+    margin-right: -1px;
+    margin-left: -1px;
+  }
+
+
+
+
+  /* navbar */
+
+
+  /* Navbar.css */
+
+/* Base styles for the entire navbar */
+.navbar {
+  width: 240px; /* Adjust the width as needed */
+  height: 100vh;
+  background-color: #f8f9fa; /* Set your desired background color */
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input styles for the search bar */
+.search-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+/* List styles for the navigation items */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  /* Add hover styles as needed */
+}
+
+/* Example hover effect */
+.nav-list li:hover {
+  background-color: #e2e8f0;
+}
